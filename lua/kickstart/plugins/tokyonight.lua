@@ -46,6 +46,18 @@ return {
         -- Which-key
         hl.WhichKeyFloat = { bg = 'NONE' }
         hl.WhichKeyBorder = { fg = c.dark5, bg = 'NONE' }
+
+        -- Mini.statusline
+        hl.MiniStatuslineModeNormal = { fg = c.blue, bg = 'NONE', bold = true }
+        hl.MiniStatuslineModeInsert = { fg = c.green, bg = 'NONE', bold = true }
+        hl.MiniStatuslineModeVisual = { fg = c.magenta, bg = 'NONE', bold = true }
+        hl.MiniStatuslineModeReplace = { fg = c.red, bg = 'NONE', bold = true }
+        hl.MiniStatuslineModeCommand = { fg = c.yellow, bg = 'NONE', bold = true }
+        hl.MiniStatuslineModeOther = { fg = c.cyan, bg = 'NONE', bold = true }
+        hl.MiniStatuslineDevinfo = { fg = c.fg_dark, bg = 'NONE' }
+        hl.MiniStatuslineFilename = { fg = c.fg, bg = 'NONE' }
+        hl.MiniStatuslineFileinfo = { fg = c.fg_dark, bg = 'NONE' }
+        hl.MiniStatuslineInactive = { fg = c.dark5, bg = 'NONE' }
       end,
     }
 
