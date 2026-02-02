@@ -1,5 +1,12 @@
--- You can add your own plugins here or in other files in this directory!
---  I promise not to create any merge conflicts in this directory :)
---
--- See the kickstart.nvim README for more information
-return {}
+-- Custom plugins configuration
+-- Each plugin is in its own file for easy management
+-- Comment out a line to disable a plugin
+
+return {
+  require 'custom.plugins.yazi',
+  require 'custom.plugins.fugitive',
+  require 'custom.plugins.wildfire',
+  require 'custom.plugins.undotree',
+  require 'custom.plugins.lspsaga',
+  require 'custom.plugins.typescript-tools',
+}

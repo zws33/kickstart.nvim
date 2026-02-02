@@ -5,23 +5,21 @@ return {
     event = 'VeryLazy',
     dependencies = { 'folke/snacks.nvim', lazy = true },
     keys = {
-      -- 👇 in this section, choose your own keymappings!
       {
-        '<leader>-',
+        '<leader>yf',
         mode = { 'n', 'v' },
         '<cmd>Yazi<cr>',
-        desc = 'Open yazi at the current file',
+        desc = '[Y]azi at current [F]ile',
       },
       {
-        -- Open in the current working directory
-        '<leader>cw',
+        '<leader>yd',
         '<cmd>Yazi cwd<cr>',
-        desc = "Open the file manager in nvim's working directory",
+        desc = '[Y]azi at working [D]irectory',
       },
       {
-        '<c-up>',
+        '<leader>yr',
         '<cmd>Yazi toggle<cr>',
-        desc = 'Resume the last yazi session',
+        desc = '[Y]azi [R]esume last session',
       },
     },
     ---@type YaziConfig | {}
