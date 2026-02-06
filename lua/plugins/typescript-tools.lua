@@ -1,13 +1,10 @@
--- TypeScript/JavaScript enhanced tooling
 return {
   'pmizio/typescript-tools.nvim',
   dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
   ft = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
   opts = {
     settings = {
-      -- Spawn separate tsserver for each project for better performance
       separate_diagnostic_server = true,
-      -- Expose as "rename file" command
       expose_as_code_action = { 'fix_all', 'add_missing_imports', 'remove_unused' },
       tsserver_file_preferences = {
         includeInlayParameterNameHints = 'all',

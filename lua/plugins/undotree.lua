@@ -1,4 +1,3 @@
--- Undo history visualization
 return {
   'mbbill/undotree',
   keys = {

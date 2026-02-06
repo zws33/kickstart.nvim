@@ -1,4 +1,3 @@
--- Enhanced LSP UI
 return {
   'nvimdev/lspsaga.nvim',
   event = 'LspAttach',
