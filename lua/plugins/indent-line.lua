@@ -1,5 +1,2 @@
-return {
-  'lukas-reineke/indent-blankline.nvim',
-  main = 'ibl',
-  opts = {},
-}
+-- Disabled: Replaced by mini.indentscope
+return {}

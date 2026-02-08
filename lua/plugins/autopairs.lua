@@ -1,5 +1,2 @@
-return {
-  'windwp/nvim-autopairs',
-  event = 'InsertEnter',
-  opts = {},
-}
+-- Disabled: Replaced by mini.pairs
+return {}
