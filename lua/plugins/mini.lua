@@ -39,7 +39,7 @@ return {
     })
 
     -- File explorer - replaces yazi.nvim
-    vim.g.loaded_netrwPlugin = 1  -- Disable netrw
+    vim.g.loaded_netrwPlugin = 1 -- Disable netrw
     require('mini.files').setup {
       windows = {
         preview = true,
@@ -47,19 +47,18 @@ return {
         width_preview = 30,
       },
     }
-    
-    -- File explorer keymaps
-    vim.keymap.set('n', '<leader>fe', function()
-      require('mini.files').open(vim.api.nvim_buf_get_name(0), true)
-    end, { desc = '[F]ile [E]xplorer at current file' })
-    
-    vim.keymap.set('n', '<leader>fE', function()
-      require('mini.files').open(vim.uv.cwd(), true)
-    end, { desc = '[F]ile [E]xplorer at cwd' })
-    
-    vim.keymap.set('n', '<leader>fr', function()
-      require('mini.files').reveal(vim.api.nvim_buf_get_name(0), true)
-    end, { desc = '[F]ile [R]eveal current file' })
+
+    -- File explorer keymaps (using <leader>e prefix to avoid format conflict)
+    vim.keymap.set('n', '<leader>ee', function() require('mini.files').open(vim.api.nvim_buf_get_name(0), true) end, { desc = '[E]xplore at current file' })
+
+    vim.keymap.set('n', '<leader>eE', function() require('mini.files').open(vim.uv.cwd(), true) end, { desc = '[E]xplore at cwd' })
+
+    vim.keymap.set(
+      'n',
+      '<leader>er',
+      function() require('mini.files').reveal(vim.api.nvim_buf_get_name(0), true) end,
+      { desc = '[E]xplore [R]eveal current file' }
+    )
 
     -- Buffer-local mini.files enhancements
     vim.api.nvim_create_autocmd('User', {
@@ -73,14 +72,14 @@ return {
           vim.fn.chdir(dir)
           vim.notify('Changed cwd to: ' .. dir)
         end, { buffer = buf_id, desc = 'Set cwd to current directory' })
-        
+
         -- Yank entry path
         vim.keymap.set('n', 'gy', function()
           local path = require('mini.files').get_fs_entry().path
           vim.fn.setreg('+', path)
           vim.notify('Yanked path: ' .. path)
         end, { buffer = buf_id, desc = 'Yank entry path' })
-        
+
         -- Open entry externally
         vim.keymap.set('n', 'go', function()
           local path = require('mini.files').get_fs_entry().path
@@ -88,71 +87,59 @@ return {
         end, { buffer = buf_id, desc = 'Open entry externally' })
       end,
     })
-    
+
     -- Fuzzy finder - primary search interface (replaces telescope as default)
     require('mini.pick').setup()
-    
+
     -- Mini.pick keymaps (primary search interface)
-    vim.keymap.set('n', '<leader>sf', function()
-      require('mini.pick').builtin.files()
-    end, { desc = '[S]earch [F]iles' })
-    
-    vim.keymap.set('n', '<leader>sb', function()
-      require('mini.pick').builtin.buffers()
-    end, { desc = '[S]earch [B]uffers' })
-    
-    vim.keymap.set('n', '<leader>sh', function()
-      require('mini.pick').builtin.help()
-    end, { desc = '[S]earch [H]elp' })
-    
-    vim.keymap.set('n', '<leader>sg', function()
-      require('mini.pick').builtin.grep_live()
-    end, { desc = '[S]earch by [G]rep (live)' })
-    
-    vim.keymap.set('n', '<leader>sw', function()
-      require('mini.pick').builtin.grep({ pattern = vim.fn.expand('<cword>') })
-    end, { desc = '[S]earch current [W]ord' })
-    
-    vim.keymap.set('n', '<leader>sr', function()
-      require('mini.pick').builtin.resume()
-    end, { desc = '[S]earch [R]esume' })
-    
-    vim.keymap.set('n', '<leader><leader>', function()
-      require('mini.pick').builtin.buffers()
-    end, { desc = '[ ] Find existing buffers' })
-    
-    vim.keymap.set('n', '<leader>sn', function()
-      require('mini.pick').builtin.files(nil, { source = { cwd = vim.fn.stdpath 'config' } })
-    end, { desc = '[S]earch [N]eovim files' })
-    
+    vim.keymap.set('n', '<leader>sf', function() require('mini.pick').builtin.files() end, { desc = '[S]earch [F]iles' })
+
+    vim.keymap.set('n', '<leader>sb', function() require('mini.pick').builtin.buffers() end, { desc = '[S]earch [B]uffers' })
+
+    vim.keymap.set('n', '<leader>sh', function() require('mini.pick').builtin.help() end, { desc = '[S]earch [H]elp' })
+
+    vim.keymap.set('n', '<leader>sg', function() require('mini.pick').builtin.grep_live() end, { desc = '[S]earch by [G]rep (live)' })
+
+    vim.keymap.set(
+      'n',
+      '<leader>sw',
+      function() require('mini.pick').builtin.grep { pattern = vim.fn.expand '<cword>' } end,
+      { desc = '[S]earch current [W]ord' }
+    )
+
+    vim.keymap.set('n', '<leader>sr', function() require('mini.pick').builtin.resume() end, { desc = '[S]earch [R]esume' })
+
+    vim.keymap.set('n', '<leader><leader>', function() require('mini.pick').builtin.buffers() end, { desc = '[ ] Find existing buffers' })
+
+    vim.keymap.set(
+      'n',
+      '<leader>sn',
+      function() require('mini.pick').builtin.files(nil, { source = { cwd = vim.fn.stdpath 'config' } }) end,
+      { desc = '[S]earch [N]eovim files' }
+    )
+
     -- Bracket navigation
     require('mini.bracketed').setup()
-    
+
     -- Session management
     require('mini.sessions').setup()
-    
-    -- Session keymaps
-    vim.keymap.set('n', '<leader>qs', function()
-      require('mini.sessions').write()
-    end, { desc = '[Q]uit [S]ave session' })
-    
-    vim.keymap.set('n', '<leader>qS', function()
-      require('mini.sessions').select()
-    end, { desc = '[Q]uit [S]elect session' })
-    
+
+    -- Session keymaps (using <leader>w prefix to avoid quickfix conflict)
+    vim.keymap.set('n', '<leader>ws', function() require('mini.sessions').write() end, { desc = '[W]orkspace [S]ave session' })
+
+    vim.keymap.set('n', '<leader>wS', function() require('mini.sessions').select() end, { desc = '[W]orkspace [S]elect session' })
+
     -- File visits tracking
     require('mini.visits').setup()
-    
+
     -- Visits integration with mini.pick
     vim.keymap.set('n', '<leader>so', function()
-      local visits = require('mini.visits')
+      local visits = require 'mini.visits'
       require('mini.pick').start {
         source = {
           items = visits.list_paths(),
           name = 'Visits (recent/frequent files)',
-          choose = function(item)
-            vim.cmd('edit ' .. item)
-          end,
+          choose = function(item) vim.cmd('edit ' .. item) end,
         },
       }
     end, { desc = '[S]earch [O]ften visited files' })
@@ -200,8 +187,9 @@ return {
         { mode = 'n', keys = '<Leader>c', desc = '[C]ode' },
         { mode = 'x', keys = '<Leader>c', desc = '[C]ode' },
         { mode = 'n', keys = '<Leader>u', desc = '[U]ndo' },
-        { mode = 'n', keys = '<Leader>f', desc = '[F]iles' },
-        { mode = 'n', keys = '<Leader>q', desc = '[Q]uit/Sessions' },
+        { mode = 'n', keys = '<Leader>e', desc = '[E]xplore' },
+        { mode = 'n', keys = '<Leader>w', desc = '[W]orkspace' },
+        { mode = 'n', keys = '<Leader>f', desc = '[F]ormat buffer' },
 
         -- Submode hints
         require('mini.clue').gen_clues.builtin_completion(),
