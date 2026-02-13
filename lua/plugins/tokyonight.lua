@@ -1,14 +1,14 @@
 return {
-  'folke/tokyonight.nvim',
-  priority = 1000,
-  lazy = false,
-  config = function()
-    require('tokyonight').setup {
-      style = 'storm',
-      styles = {
-        comments = { italic = false },
-      },
-      lualine_bold = true,
-    }
-  end,
+  -- 'folke/tokyonight.nvim',
+  -- priority = 1000,
+  -- lazy = false,
+  -- config = function()
+  --   require('tokyonight').setup {
+  --     style = 'storm',
+  --     styles = {
+  --       comments = { italic = false },
+  --     },
+  --     lualine_bold = true,
+  --   }
+  -- end,
 }

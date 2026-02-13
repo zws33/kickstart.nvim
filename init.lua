@@ -5,5 +5,3 @@ require 'options'
 require 'keymap'
 require 'lazy-bootstrap'
 require 'lazy-plugins'
-
-vim.cmd.colorscheme 'tokyonight'
