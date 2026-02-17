@@ -112,7 +112,6 @@ return {
 
       local servers = {
         gopls = {},
-        ts_ls = {},
         lua_ls = {
           settings = {
             Lua = {
